@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Anggota</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1e272e;
+      color: #f1f1f1;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .logo-area img {
+      height: 40px;
+    }
+
+    .logo-area span {
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    #searchInput {
+      width: 100%;
+      max-width: 400px;
+      padding: 0.6rem;
+      margin-bottom: 1.5rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #2f3640;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid #444;
+    }
+
+    th {
+      background-color: #9b59b6;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #3b3b3b;
+    }
+
+    tr:hover {
+      background-color: #485460;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.6rem 1.2rem;
+      background-color: #3498db;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .back-button:hover {
+      background-color: #2980b9;
+    }
+
+    @media (max-width: 768px) {
+      th, td {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+      }
+
+      #searchInput {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-area">
+      <img src="logogsb.png" alt="Logo Komunitas" onerror="this.src='default-logo.png'">
+      <span>STT GARSAK SADIMARA BERSATU</span>
+    </div>
+  </header>
+
+  <h2>Rekap Cageran Anggota</h2>
+  <input type="text" id="searchInput" placeholder="Cari nama anggota...">
+
+  <table>
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama</th>
+        <th>Nominal</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody id="dataTable">
+      <tr><td>1</td><td>Sentana Yasa</td><td>Rp400.000</td><td>Rp480.000</td></tr>
+      <tr><td>2</td><td>Putu Ekantara</td><td>Rp5.000.000</td><td>Rp6.000.000</td></tr>
+      <tr><td>3</td><td>Ketut Suardika</td><td>Rp200.000</td><td>Rp240.000</td></tr>
+      <tr><td>4</td><td>Merta Sudana</td><td>Rp200.000</td><td>Rp240.000</td></tr>
+      <tr><td>5</td><td>Komang Ples</td><td>Rp400.000</td><td>Rp480.000</td></tr>
+      <tr><td>6</td><td>Ketut Adi Suardana</td><td>Rp400.000</td><td>Rp480.000</td></tr>
+      <tr><td>7</td><td>Kadek Artana</td><td>Rp200.000</td><td>Rp240.000</td></tr>
+      <tr><td>8</td><td>Gede Kancil</td><td>Rp200.000</td><td>Rp240.000</td></tr>
+      <tr><td>9</td><td>De Bungkil</td><td>Rp200.000</td><td>Rp240.000</td></tr>
+      <tr><td>10</td><td>Wayan Sumerta</td><td>Rp200.000</td><td>Rp240.000</td></tr>
+      <tr><td>11</td><td>Ketut Bagia</td><td>Rp200.000</td><td>Rp240.000</td></tr>
+      <tr><td>12</td><td>Ketut Cetrung</td><td>Rp1.000.000</td><td>Rp1.200.000</td></tr>
+      <tr><td>13</td><td>Putu Kariasa</td><td>Rp200.000</td><td>Rp240.000</td></tr>
+      <tr><td>14</td><td>Putu Adi</td><td>Rp200.000</td><td>Rp240.000</td></tr>
+      <tr><td>15</td><td>Kadek Logi</td><td>Rp200.000</td><td>Rp240.000</td></tr>
+      <tr><td>16</td><td>Kadek Sriasih</td><td>Rp200.000</td><td>Rp240.000</td></tr>
+      <tr><td>17</td><td>Gede Parsa</td><td>Rp200.000</td><td>Rp240.000</td></tr>
+      <tr><td>18</td><td>Budeng</td><td>Rp400.000</td><td>Rp480.000</td></tr>
+      <tr><td>19</td><td>Tomblos</td><td>Rp200.000</td><td>Rp240.000</td></tr>
+      <tr><td>20</td><td>Sumerta Lolot</td><td>Rp200.000</td><td>Rp240.000</td></tr>
+      <tr><td>21</td><td>Putu Ama</td><td>Rp300.000</td><td>Rp330.000</td></tr>
+      <tr><td>22</td><td><strong>Total</strong></td><td>-</td><td><strong>Rp10.700.000</strong></td></tr>
+    </tbody>
+  </table>
+
+  <a href="index.html" class="back-button">← Kembali</a>
+
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener("keyup", function () {
+      const filter = this.value.toLowerCase();
+      const rows = document.querySelectorAll("#dataTable tr");
+      rows.forEach(row => {
+        const name = row.cells[1]?.textContent.toLowerCase() || "";
+        row.style.display = name.includes(filter) ? "" : "none";
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Countdown Penampahan Kuningan</title>
+  <style>
+    body {
+      background-color: #1e272e;
+      color: #f1f1f1;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .logo {
+      max-width: 100%;
+      height: auto;
+      max-height: 150px;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      margin: 0.5rem 0;
+    }
+
+    #countdown {
+      font-size: 2rem;
+      background-color: #2f3640;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      margin: 1.5rem 0;
+    }
+
+    .back-button {
+      background-color: #3498db;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-decoration: none;
+    }
+
+    .back-button:hover {
+      background-color: #2980b9;
+    }
+
+    @media (max-width: 600px) {
+      #countdown {
+        font-size: 1.5rem;
+        padding: 1rem;
+      }
+
+      .back-button {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+      }
+
+      .logo {
+        max-height: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo besar -->
+  <img src="logogsb.png" alt="Logo STT" class="logo" onerror="this.src='default-logo.png'">
+
+  <h1>Hitung Mundur ke Penampahan Kuningan</h1>
+  <h1>Hari Mepatung Babi</h1>
+
+  <div id="countdown">Memuat...</div>
+
+  <a href="index.html" class="back-button">← Kembali ke Dashboard</a>
+
+  <script>
+    function updateCountdown() {
+      const targetDate = new Date('2025-11-28T00:00:00');
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById('countdown').innerText = 'Selamat Hari Penampahan Kuningan!';
+        clearInterval(timer);
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('countdown').innerText =
+        `${days} hari ${hours} jam ${minutes} menit ${seconds} detik`;
+    }
+
+    updateCountdown();
+    const timer = setInterval(updateCountdown, 1000);
+  </script>
+
+</body>
+</html>
