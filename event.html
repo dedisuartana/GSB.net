@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Countdown Penampahan Kuningan</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Awig Awig Lan Event</title>
   <style>
     body {
       background-color: #1e272e;
@@ -74,13 +74,20 @@
 </head>
 <body>
 
-  <!-- Logo besar -->
-  <img src="logogsb.png" alt="Logo STT" class="logo" onerror="this.src='default-logo.png'">
+  <img src="logogsb.png" alt="Logo STT" class="logo" onerror="this.src='default-logo.png'" />
+
+  <div>
+    <p><strong>Awig-Awig STT GSB</strong> ditetapkan pada tanggal <strong>3 Mei 2025</strong>.</p>
+    <p><b>Perawatan Alat-Alat Fasilitas GSB</b>b</p>
+    <p>1. Bagi Siapa Yang Menggunakan Alat - alat GSB bagi anggota GSB Di kenai Biaya Perawatan Sebesar Rp. 100.000 / Seikhlasnya</p>
+    <p>2. Bagi Siapa Saja Yang Memakai Fasilitas Alat -alat GSB, Bila Mana Ada Kerusakan Di Alat Tersebut, Dikenai Biaya Penanggung Jawaban Kerusakan Dan Sewa Alat</p>
+  </div>
 
   <h1>Hitung Mundur ke Penampahan Kuningan</h1>
   <h1>Hari Mepatung Babi</h1>
 
   <div id="countdown">Memuat...</div>
+  <p id="tanggal-hari-ini"></p>
 
   <a href="index.html" class="back-button">← Kembali ke Dashboard</a>
 
@@ -107,6 +114,12 @@
 
     updateCountdown();
     const timer = setInterval(updateCountdown, 1000);
+
+    const today = new Date();
+    document.getElementById("tanggal-hari-ini").innerText =
+      "Hari ini: " + today.toLocaleDateString("id-ID", {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      });
   </script>
 
 </body>
