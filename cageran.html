@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dashboard Anggota</title>
   <style>
     body {
@@ -33,14 +33,39 @@
       margin-bottom: 1rem;
     }
 
+    p.info {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      color: #ccc;
+    }
+
     #searchInput {
       width: 100%;
       max-width: 400px;
       padding: 0.6rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       border-radius: 6px;
       border: none;
       font-size: 1rem;
+    }
+
+    .action-buttons {
+      margin-bottom: 1.5rem;
+    }
+
+    .export-button {
+      padding: 0.6rem 1.2rem;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-right: 1rem;
+    }
+
+    .export-button:hover {
+      background-color: #1e8449;
     }
 
     table {
@@ -53,7 +78,6 @@
 
     th, td {
       padding: 0.75rem 1rem;
-      text-align: left;
       border-bottom: 1px solid #444;
     }
 
@@ -68,6 +92,11 @@
 
     tr:hover {
       background-color: #485460;
+    }
+
+    td:nth-child(3), td:nth-child(4),
+    th:nth-child(3), th:nth-child(4) {
+      text-align: right;
     }
 
     .back-button {
@@ -105,8 +134,14 @@
     </div>
   </header>
 
+  <main>
+    <p class="info">Cageran 3/5/2025</p>
+    <p>Bagi Anggota sane Nyagerin Jinah Cash STT, Wajib Membayar wantah Melunasi Cageran Beserta Panak Pipis Yang Tertera Di Tabel Bawah</p>
+    <p>Pada Sangkep 6 Bulan Yang Akan Datang (Ring Penampahan Kuningan)</p>
+
   <h2>Rekap Cageran Anggota</h2>
   <input type="text" id="searchInput" placeholder="Cari nama anggota...">
+
 
   <table>
     <thead>
@@ -114,7 +149,7 @@
         <th>No</th>
         <th>Nama</th>
         <th>Nominal</th>
-        <th>Nominal + Panak pipis</th>
+        <th>Total</th>
       </tr>
     </thead>
     <tbody id="dataTable">
@@ -155,6 +190,18 @@
         row.style.display = name.includes(filter) ? "" : "none";
       });
     });
+    function exportTableToExcel() {
+      const table = document.getElementById("dataTableWrapper");
+      const tableHTML = table.outerHTML.replace(/ /g, '%20');
+
+      const filename = 'rekap-cageran.xls';
+      const dataType = 'application/vnd.ms-excel';
+
+      const link = document.createElement('a');
+      link.href = 'data:' + dataType + ', ' + tableHTML;
+      link.download = filename;
+      link.click();
+    }
   </script>
 </body>
 </html>
