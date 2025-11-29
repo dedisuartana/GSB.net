@@ -9,48 +9,207 @@
   <style>
     :root {
       --primary: #3498db;
+      --secondary: #2ecc71;
+      --accent: #9b59b6;
       --bg-dark: #1e272e;
       --bg-darker: #121212;
       --text-light: #f1f1f1;
-      --accent: #9b59b6;
-      --soft-shadow: rgba(0, 0, 0, 0.2);
+      --text-muted: #bdc3c7;
+      --shadow: rgba(0, 0, 0, 0.3);
+      --border-radius: 8px;
+      --transition: all 0.3s ease;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background-color: var(--bg-dark); color: var(--text-light); display: flex; flex-direction: column; min-height: 100vh; }
-    header { background: var(--bg-darker); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 5px var(--soft-shadow); }
-    .logo-area { display: flex; align-items: center; gap: 1rem; }
-    .logo-area img { height: 40px; }
-    .logo-area span { font-weight: 600; font-size: 1.3rem; }
-    main { flex: 1; padding: 2rem; }
-    .search-bar { margin-bottom: 1.5rem; display: flex; justify-content: flex-end; }
-    .search-bar input { padding: 0.5rem 1rem; border-radius: 6px; border: none; width: 100%; max-width: 300px; }
-    .table-container { overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; background: var(--bg-darker); border-radius: 8px; overflow: hidden; }
-    th, td { padding: 0.75rem 1rem; text-align: left; }
-    th { background: var(--bg-dark); color: var(--primary); position: sticky; top: 0; }
-    tr:nth-child(even) { background: #2a2f33; }
-    tr:hover { background: #33383c; }
-    .actions button { background: var(--accent); border: none; color: white; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer; transition: background 0.3s; }
-    .actions button:hover { background: #8e44ad; }
-    footer { background-color: #111; color: #ccc; text-align: center; padding: 1rem; font-size: 0.9rem; box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3); }
-    @media (max-width: 768px) {
-      header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-      .search-bar { justify-content: center; }
+    body { 
+      font-family: 'Poppins', sans-serif; 
+      background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%); 
+      color: var(--text-light); 
+      display: flex; 
+      flex-direction: column; 
+      min-height: 100vh; 
+      animation: fadeIn 0.5s ease-in;
     }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    header { 
+      background: linear-gradient(135deg, var(--bg-darker) 0%, #2c3e50 100%); 
+      padding: 1.5rem 2rem; 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      box-shadow: 0 4px 10px var(--shadow); 
+      border-bottom: 2px solid var(--primary);
+    }
+    .logo-area { display: flex; align-items: center; gap: 1rem; }
+    .logo-area img { height: 50px; border-radius: var(--border-radius); }
+    .logo-area span { font-weight: 600; font-size: 1.5rem; color: var(--primary); }
+    main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .search-bar { 
+      margin-bottom: 2rem; 
+      display: flex; 
+      justify-content: flex-end; 
+      align-items: center; 
+      gap: 0.5rem;
+    }
+    .search-bar input { 
+      padding: 0.75rem 1rem; 
+      border-radius: var(--border-radius); 
+      border: 1px solid var(--text-muted); 
+      background: var(--bg-darker); 
+      color: var(--text-light); 
+      width: 100%; 
+      max-width: 350px; 
+      transition: var(--transition);
+    }
+    .search-bar input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 5px var(--primary); }
+    .search-bar i { color: var(--text-muted); }
+    .table-container { 
+      overflow-x: auto; 
+      border-radius: var(--border-radius); 
+      box-shadow: 0 4px 15px var(--shadow);
+    }
+    table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      background: var(--bg-darker); 
+      border-radius: var(--border-radius); 
+      overflow: hidden;
+    }
+    th, td { 
+      padding: 1rem; 
+      text-align: left; 
+      border-bottom: 1px solid #34495e;
+    }
+    th { 
+      background: linear-gradient(135deg, var(--bg-dark) 0%, #2c3e50 100%); 
+      color: var(--primary); 
+      font-weight: 600; 
+      position: sticky; 
+      top: 0; 
+      z-index: 1;
+    }
+    tr:nth-child(even) { background: #2a2f33; }
+    tr:hover { background: #33383c; transform: translateY(-2px); transition: var(--transition); }
+    .actions button { 
+      background: linear-gradient(135deg, var(--accent) 0%, #8e44ad 100%); 
+      border: none; 
+      color: white; 
+      padding: 0.5rem 1rem; 
+      border-radius: var(--border-radius); 
+      cursor: pointer; 
+      transition: var(--transition); 
+      display: flex; 
+      align-items: center; 
+      gap: 0.5rem;
+    }
+    .actions button:hover { 
+      background: linear-gradient(135deg, #8e44ad 0%, var(--accent) 100%); 
+      transform: scale(1.05); 
+      box-shadow: 0 4px 10px var(--shadow);
+    }
+    .actions button i { font-size: 0.9rem; }
+    /* Modal */
+    .modal { 
+      display: none; 
+      position: fixed; 
+      z-index: 1000; 
+      left: 0; 
+      top: 0; 
+      width: 100%; 
+      height: 100%; 
+      background-color: rgba(0,0,0,0.7); 
+      animation: fadeIn 0.3s ease-in;
+    }
+    .modal-content { 
+      background: var(--bg-darker); 
+      margin: 10% auto; 
+      padding: 2rem; 
+      border: 1px solid #888; 
+      width: 90%; 
+      max-width: 500px; 
+      border-radius: var(--border-radius); 
+      color: var(--text-light); 
+      box-shadow: 0 10px 30px var(--shadow);
+    }
+    .close { 
+      color: var(--text-muted); 
+      float: right; 
+      font-size: 2rem; 
+      font-weight: bold; 
+      cursor: pointer; 
+      transition: var(--transition);
+    }
+    .close:hover { color: var(--primary); }
+    /* Pagination */
+    .pagination { 
+      display: flex; 
+      justify-content: center; 
+      margin-top: 2rem; 
+      gap: 0.5rem;
+    }
+    .pagination button { 
+      background: var(--bg-dark); 
+      color: var(--text-light); 
+      border: 1px solid var(--text-muted); 
+      padding: 0.5rem 1rem; 
+      border-radius: var(--border-radius); 
+      cursor: pointer; 
+      transition: var(--transition);
+    }
+    .pagination button:hover, .pagination button.active { 
+      background: var(--primary); 
+      border-color: var(--primary);
+    }
+    /* Mobile Cards */
+    @media (max-width: 768px) {
+      header { flex-direction: column; align-items: center; text-align: center; gap: 1rem; padding: 1rem; }
+      .logo-area span { font-size: 1.2rem; }
+      main { padding: 1rem; }
+      .search-bar { justify-content: center; max-width: 100%; }
+      .table-container { display: none; } /* Hide table on mobile */
+      .card-container { display: block; }
+      .card { 
+        background: var(--bg-darker); 
+        margin-bottom: 1rem; 
+        padding: 1rem; 
+        border-radius: var(--border-radius); 
+        box-shadow: 0 4px 10px var(--shadow); 
+        display: flex; 
+        flex-direction: column; 
+        gap: 0.5rem;
+      }
+      .card h3 { color: var(--primary); margin: 0; }
+      .card p { margin: 0; color: var(--text-muted); }
+      .card .actions { align-self: flex-start; }
+    }
+    .card-container { display: none; } /* Hidden on desktop */
+    footer { 
+      background: linear-gradient(135deg, #111 0%, #2c3e50 100%); 
+      color: #ccc; 
+      text-align: center; 
+      padding: 1.5rem; 
+      font-size: 0.9rem; 
+      box-shadow: 0 -4px 10px var(--shadow); 
+      border-top: 2px solid var(--primary);
+    }
+    footer a { color: var(--secondary); text-decoration: none; transition: var(--transition); }
+    footer a:hover { color: var(--primary); }
   </style>
 </head>
 <body>
   <header>
     <div class="logo-area">
-      <img src="logogsb.png" alt="Logo Komunitas" onerror="this.src='default-logo.png'">
+      <img src="logogsb.png" alt="Logo Sekolah Tinggi Teknologi GSB" onerror="this.src='https://placehold.co/50x50?text=LOGO'">
       <span>Daftar Anggota</span>
     </div>
   </header>
 
   <main>
     <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Cari anggota...">
+      <i class="fas fa-search"></i>
+      <input type="text" id="searchInput" placeholder="Cari berdasarkan nama atau jabatan..." aria-label="Pencarian anggota">
     </div>
+    
+    <!-- Desktop Table -->
     <div class="table-container">
       <table id="anggotaTable">
         <thead>
@@ -61,272 +220,189 @@
             <th>Aksi</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>I Putu Ekantara</td>
-            <td>Ketua</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>I Wayan Sumerta Yasa</td>
-            <td>Wakil Ketua</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td> I Nengah Mertayasa</td>
-            <td>Bendahara</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td> I Putu Dedi Suartana</td>
-            <td>Sekretaris</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>I Ketut Suparsa </td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td> I Putu Sentana Yasa</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>8</td>
-            <td> I Ketut Suardika</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>9</td>
-            <td> I Komang Merta Sudana</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>10</td>
-            <td> I Ketut Adi Suardana </td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>11</td>
-            <td> I Kadek Artana</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>12</td>
-            <td> I Nengah Hendra Prayoga</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>13</td>
-            <td> Ni Ketut Cahyani</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>14</td>
-            <td> I Nengah Suriandana</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>15</td>
-            <td> Ni Kadek Sriasih</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>16</td>
-            <td> I Nengah Suantara</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>17</td>
-            <td> I Gede Darmayasa </td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>18</td>
-            <td> I Wayan Balik</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>19</td>
-            <td> I Gede Putu Suartama</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>20</td>
-            <td> I Putu Prayoga</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>21</td>
-            <td> I Ketut Bagia</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>22</td>
-            <td> I Ketut Darma</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>23</td>
-            <td> I Putu Kariasa</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>24</td>
-            <td> I Putu Adi Suartama</td>
-            <td>SAnggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>25</td>
-            <td> I Kadek Sumardiasa </td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>26</td>
-            <td> I Kadek Logi Swastawan</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>27</td>
-            <td> I Gede Parsa</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>28</td>
-            <td> I Kadek Yogik</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>29</td>
-            <td> I Kadek Surya</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>30</td>
-            <td> I Kadek Agus Suantara </td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>31</td>
-            <td> I Putu Yudiana</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>32</td>
-            <td> I Nengah Jati Prayoga </td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>33</td>
-            <td> I Putu Sumerta</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>34</td>
-            <td> Kadek Riandana </td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>35</td>
-            <td> I Komang Suryadana</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>36</td>
-            <td> I Wayan Putri Susilawati </td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>37</td>
-            <td> I Putu Ama</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>38</td>
-            <td> Nengah Januariasa </td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>39</td>
-            <td> I Kadek Wahyu Gunadi</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>40</td>
-            <td> I Putu Agus Widana</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <tr>
-            <td>41</td>
-            <td>Ni Ketut Sri Agustini</td>
-            <td>Anggota</td>
-            <td class="actions"><button onclick="viewMember('Admin lagi pusing nunggu update ya')">Lihat</button></td>
-          </tr>
-          <!-- Tambah baris anggota lain di sini -->
+        <tbody id="tableBody">
+          <!-- Data anggota akan diisi oleh JS -->
         </tbody>
       </table>
     </div>
+    
+    <!-- Mobile Cards -->
+    <div class="card-container" id="cardContainer">
+      <!-- Kartu akan diisi oleh JS -->
+    </div>
+    
+    <div class="pagination" id="pagination">
+      <!-- Tombol pagination akan diisi oleh JS -->
+    </div>
   </main>
 
+  <!-- Modal -->
+  <div id="memberModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="modalTitle">Detail Anggota</h2>
+      <p id="modalContent">Informasi detail akan muncul di sini.</p>
+    </div>
+  </div>
+
   <footer>
-    &copy; 2025 STT GSB | Dikembangkan oleh <a href="https://www.instagram.com/dedystrn?igsh=MTZuZDhzeHM2bHl4cw==" target="_blank">@dedysuartana_</a>
+    &copy; 2025 STT GSB | Dikembangkan oleh <a href="https://www.instagram.com/dedystrn" target="_blank">@dedysuartana_</a>
   </footer>
 
   <script>
-    // Filter pencarian
-    document.getElementById('searchInput').addEventListener('input', function() {
-      const filter = this.value.toLowerCase();
-      document.querySelectorAll('#anggotaTable tbody tr').forEach(row => {
-        const text = row.textContent.toLowerCase();
-        row.style.display = text.includes(filter) ? '' : 'none';
+    // Data anggota
+    const members = [
+      { no: 1, nama: 'I Wayan Sumerta Yasa', jabatan: 'Ketua' },
+      { no: 2, nama: 'I Putu Yudiana', jabatan: 'Wakil Ketua' },
+      { no: 3, nama: 'I Nengah Mertayasa', jabatan: 'Bendahara' },
+      { no: 4, nama: 'I Putu Dedi Suartana', jabatan: 'Sekretaris' },
+      { no: 5, nama: 'I Ketut Suparsa', jabatan: 'Anggota' },
+      { no: 6, nama: 'I Putu Sentana Yasa', jabatan: 'Anggota' },
+      { no: 7, nama: 'I Ketut Suardika', jabatan: 'Anggota' },
+      { no: 9, nama: 'I Ketut Adi Suardana', jabatan: 'Anggota' },
+      { no: 10, nama: 'I Kadek Artana', jabatan: 'Anggota' },
+      { no: 11, nama: 'I Nengah Hendra Prayoga', jabatan: 'Anggota' },
+      { no: 12, nama: 'Ni Ketut Cahyani', jabatan: 'Anggota' },
+      { no: 13, nama: 'I Nengah Suriandana', jabatan: 'Anggota' },
+      { no: 14, nama: 'Ni Kadek Sriasih', jabatan: 'Anggota' },
+      { no: 15, nama: 'I Nengah Suantara', jabatan: 'Anggota' },
+      { no: 16, nama: 'I Gede Darmayasa', jabatan: 'Anggota' },
+      { no: 17, nama: 'I Wayan Balik', jabatan: 'Anggota' },
+      { no: 18, nama: 'I Gede Putu Suartama', jabatan: 'Anggota' },
+      { no: 19, nama: 'I Putu Yogantara', jabatan: 'Anggota' },
+      { no: 20, nama: 'I Ketut Bagia', jabatan: 'Anggota' },
+      { no: 21, nama: 'I Ketut Darma', jabatan: 'Anggota' },
+      { no: 22, nama: 'I Putu Kariasa', jabatan: 'Anggota' },
+      { no: 23, nama: 'I Putu Adi Suartama', jabatan: 'Anggota' },
+      { no: 24, nama: 'I Kadek Sumardiasa', jabatan: 'Anggota' },
+      { no: 25, nama: 'I Kadek Logi Swastawan', jabatan: 'Anggota' },
+      { no: 26, nama: 'I Gede Parsa', jabatan: 'Anggota' },
+      { no: 27, nama: 'I Kadek Yogik', jabatan: 'Anggota' },
+      { no: 28, nama: 'I Kadek Surya', jabatan: 'Anggota' },
+      { no: 29, nama: 'I Kadek Agus Suantara', jabatan: 'Anggota' },
+      { no: 30, nama: 'I Putu Ekantara', jabatan: 'Anggota' },
+      { no: 31, nama: 'I Nengah Jati Prayoga', jabatan: 'Anggota' },
+      { no: 32, nama: 'I Putu Sumerta', jabatan: 'Anggota' },
+      { no: 33, nama: 'Kadek Riandana', jabatan: 'Anggota' }
+    ];
+
+    const itemsPerPage = 10;
+    let currentPage = 1;
+    let filteredMembers = [...members]; // Salin data awal
+
+    // Fungsi untuk menampilkan data berdasarkan halaman
+    function displayMembers(page) {
+      const start = (page - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const pageMembers = filteredMembers.slice(start, end);
+
+      const tableBody = document.getElementById('tableBody');
+      const cardContainer = document.getElementById('cardContainer');
+      tableBody.innerHTML = '';
+      cardContainer.innerHTML = '';
+
+      pageMembers.forEach(member => {
+        // Tabel Desktop
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${member.no}</td>
+          <td>${member.nama}</td>
+          <td>${member.jabatan}</td>
+          <td class="actions">
+            <button onclick="openModal(${member.no}, '${member.nama}', '${member.jabatan}')">
+              <i class="fas fa-info-circle"></i> Detail
+            </button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+
+        // Kartu Mobile
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <h3>${member.nama}</h3>
+          <p><strong>No:</strong> ${member.no}</p>
+          <p><strong>Jabatan:</strong> ${member.jabatan}</p>
+          <div class="actions">
+            <button onclick="openModal(${member.no}, '${member.nama}', '${member.jabatan}')">
+              <i class="fas fa-info-circle"></i> Detail
+            </button>
+          </div>
+        `;
+        cardContainer.appendChild(card);
       });
+    }
+
+    // Fungsi untuk membuat tombol pagination
+    function setupPagination() {
+      const pagination = document.getElementById('pagination');
+      pagination.innerHTML = '';
+
+      const pageCount = Math.ceil(filteredMembers.length / itemsPerPage);
+
+      for (let i = 1; i <= pageCount; i++) {
+        const button = document.createElement('button');
+        button.innerText = i;
+        button.onclick = () => {
+          currentPage = i;
+          displayMembers(currentPage);
+          updatePaginationButtons();
+        };
+        if (i === currentPage) button.classList.add('active');
+        pagination.appendChild(button);
+      }
+    }
+
+    // Fungsi untuk memperbarui tombol aktif pagination
+    function updatePaginationButtons() {
+      const buttons = document.querySelectorAll('.pagination button');
+      buttons.forEach((btn, index) => {
+        if (index + 1 === currentPage) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    // Fungsi pencarian
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      filteredMembers = members.filter(member => 
+        member.nama.toLowerCase().includes(query) || 
+        member.jabatan.toLowerCase().includes(query)
+      );
+      currentPage = 1; // Reset ke halaman pertama
+      displayMembers(currentPage);
+      setupPagination();
     });
 
-    // Contoh fungsi viewMember
-    function viewMember(id) {
-      alert('Melihat detail anggota: ' + id);
-      // Ganti dengan logika redirect/detail modal
+    // Fungsi modal
+    function openModal(no, nama, jabatan) {
+      document.getElementById('modalTitle').textContent = `Detail Anggota: ${nama}`;
+      document.getElementById('modalContent').innerHTML = `
+        <p><strong>No:</strong> ${no}</p>
+        <p><strong>Nama:</strong> ${nama}</p>
+        <p><strong>Jabatan:</strong> ${jabatan}</p>
+      `;
+      document.getElementById('memberModal').style.display = 'block';
     }
+
+    function closeModal() {
+      document.getElementById('memberModal').style.display = 'none';
+    }
+
+    // Tutup modal saat klik di luar konten
+    window.onclick = function(event) {
+      const modal = document.getElementById('memberModal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    };
+
+    // Inisialisasi tampilan
+    displayMembers(currentPage);
+    setupPagination();
   </script>
 </body>
 </html>
