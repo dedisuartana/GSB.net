@@ -81,45 +81,116 @@
     <p><b>Perawatan Alat-Alat Fasilitas GSB</b>b</p>
     <p>1. Bagi Siapa Yang Menggunakan Alat - alat GSB bagi anggota GSB Di kenai Biaya Perawatan Sebesar Rp. 100.000 / Seikhlasnya</p>
     <p>2. Bagi Siapa Saja Yang Memakai Fasilitas Alat -alat GSB, Bila Mana Ada Kerusakan Di Alat Tersebut, Dikenai Biaya Penanggung Jawaban Kerusakan Dan Sewa Alat</p>
+    <p>3. Bagi Anggota Yang Tidak Menghadiri, Acara Penampahan Babi Akan di Kenakan Jalukan Sebesar Rp. 25.000 </p>
   </div>
-  <p><strong>Agenda STT GSB</strong> ditetapkan pada tanggal <strong>3 Mei 2025</strong>.</p>
-  <p>1. Di Hari Penampahan Kuningan Akan Di Laksanakan Mepatung Babi dan Akan Di Kenakan Jalukan Bilamana Tidak Hadir, Sesuai Nominal Yang Telah Di Tentukan</p>
 
-  <div id="countdown">Memuat...</div>
-  <p id="tanggal-hari-ini"></p>
+<div><strong>Daftar Anggota Yang Nyaluk , (Penampahan Babi)</strong>
+    <table>
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>I Komang Merta Sudana</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>I Komang Merta Sudana</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>I Kadek Artana</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>I Nengah Hendra Prayoga</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Ni Ketut Cahyani</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>I Nengah Suriandana</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Ni Kadek Sriasih</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td> I Wayan Balik</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>I Gede Putu Suartama</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td> I Ketut Bagia</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>I Ketut Darma</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td> I Putu Adi Suartama</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>I Kadek Sumardiasa </td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>I Kadek Yogik</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>I Kadek Surya</td>
+            </tr>
+            <tr>
+                <td>16</td>
+                <td>Kadek Riandana</td>
+            </tr>
+            <tr>
+                <td>17</td>
+                <td>I Komang Suryadana</td>
+            </tr>
+            <tr>
+                <td>18</td>
+                <td>I Wayan Putri Susilawati</td>
+            </tr>
+            <tr>
+                <td>19</td>
+                <td>I Putu Ama</td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td>Nengah Januariasa</td>
+            </tr>
+            <tr>
+                <td>21</td>
+                <td>I Kadek Wahyu Gunadi</td>
+            </tr>
+            <tr>
+                <td>22</td>
+                <td>Ni Ketut Sri Agustini</td>
+            </tr>
+            <tr>
+                <td>23</td>
+                <td>......on going </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
 
   <a href="index.html" class="back-button">← Kembali ke Dashboard</a>
-
-  <script>
-    function updateCountdown() {
-      const targetDate = new Date('2025-11-28T00:00:00');
-      const now = new Date();
-      const diff = targetDate - now;
-
-      if (diff <= 0) {
-        document.getElementById('countdown').innerText = 'Selamat Hari Penampahan Kuningan!';
-        clearInterval(timer);
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      document.getElementById('countdown').innerText =
-        `${days} hari ${hours} jam ${minutes} menit ${seconds} detik`;
-    }
-
-    updateCountdown();
-    const timer = setInterval(updateCountdown, 1000);
-
-    const today = new Date();
-    document.getElementById("tanggal-hari-ini").innerText =
-      "Hari ini: " + today.toLocaleDateString("id-ID", {
-        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-      });
-  </script>
 
 </body>
 </html>
