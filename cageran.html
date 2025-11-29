@@ -3,208 +3,358 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashboard Anggota</title>
+  <title>Dashboard Rekap Cageran - STT GSB</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #1e272e;
-      color: #f1f1f1;
-      margin: 0;
-      padding: 2rem;
+    :root {
+      --primary: #3498db;
+      --secondary: #2ecc71;
+      --accent: #9b59b6;
+      --bg-dark: #1e272e;
+      --bg-darker: #121212;
+      --text-light: #f1f1f1;
+      --text-muted: #bdc3c7;
+      --shadow: rgba(0, 0, 0, 0.3);
+      --border-radius: 8px;
+      --transition: all 0.3s ease;
     }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+      color: var(--text-light);
+      padding: 1.5rem;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      border-bottom: 2px solid var(--primary);
+      margin-bottom: 1.5rem;
+    }
     .logo-area {
       display: flex;
       align-items: center;
       gap: 1rem;
-      margin-bottom: 1rem;
     }
-
     .logo-area img {
-      height: 40px;
+      height: 50px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 6px var(--shadow);
     }
-
     .logo-area span {
       font-weight: 600;
       font-size: 1.3rem;
+      color: var(--primary);
     }
-
-    h2 {
-      margin-bottom: 1rem;
+    .info-section {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      border-radius: var(--border-radius);
+      margin: 1rem 0;
+      border-left: 4px solid var(--accent);
     }
-
-    p.info {
-      font-style: italic;
+    .info-section p {
+      margin: 0.5rem 0;
+      line-height: 1.6;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
       margin-bottom: 1.5rem;
-      color: #ccc;
     }
-
     #searchInput {
-      width: 100%;
-      max-width: 400px;
-      padding: 0.6rem;
-      margin-bottom: 1rem;
-      border-radius: 6px;
-      border: none;
+      flex: 1;
+      min-width: 200px;
+      padding: 0.75rem 1rem;
+      border-radius: var(--border-radius);
+      border: 1px solid var(--text-muted);
+      background: var(--bg-darker);
+      color: var(--text-light);
       font-size: 1rem;
+      transition: var(--transition);
     }
-
-    .action-buttons {
-      margin-bottom: 1.5rem;
+    #searchInput:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 5px var(--primary);
     }
-
     .export-button {
-      padding: 0.6rem 1.2rem;
-      background-color: #27ae60;
+      background: linear-gradient(135deg, var(--secondary) 0%, #27ae60 100%);
       color: white;
       border: none;
-      border-radius: 8px;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--border-radius);
       font-size: 1rem;
+      font-weight: 500;
       cursor: pointer;
-      margin-right: 1rem;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
-
     .export-button:hover {
-      background-color: #1e8449;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px var(--shadow);
     }
-
+    .bukti-cageran {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .bukti-cageran img {
+      max-width: 100%;
+      max-height: 300px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 15px var(--shadow);
+      object-fit: cover;
+    }
+    .table-container {
+      overflow-x: auto;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 15px var(--shadow);
+      margin-bottom: 2rem;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
-      background-color: #2f3640;
-      border-radius: 10px;
-      overflow: hidden;
+      background: var(--bg-darker);
     }
-
     th, td {
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid #444;
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #34495e;
     }
-
     th {
-      background-color: #9b59b6;
-      color: white;
+      background: linear-gradient(135deg, var(--bg-dark) 0%, #2c3e50 100%);
+      color: var(--primary);
+      font-weight: 600;
+      position: sticky;
+      top: 0;
     }
-
-    tr:nth-child(even) {
-      background-color: #3b3b3b;
+    tr:nth-child(even) { background: #2a2f33; }
+    tr:hover { background: #33383c; transform: translateY(-2px); transition: var(--transition); }
+    td:nth-child(3), td:nth-child(4) { text-align: right; }
+    tr.total-row {
+      background: rgba(46, 204, 113, 0.15) !important;
+      font-weight: bold;
     }
-
-    tr:hover {
-      background-color: #485460;
-    }
-
-    td:nth-child(3), td:nth-child(4),
-    th:nth-child(3), th:nth-child(4) {
-      text-align: right;
-    }
-
+    tr.total-row td { border-top: 2px solid var(--secondary); }
     .back-button {
-      display: inline-block;
-      margin-top: 2rem;
-      padding: 0.6rem 1.2rem;
-      background-color: #3498db;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background: linear-gradient(135deg, var(--primary) 0%, #2980b9 100%);
       color: white;
       text-decoration: none;
-      border-radius: 8px;
+      border-radius: var(--border-radius);
       font-size: 1rem;
+      font-weight: 500;
+      transition: var(--transition);
     }
-
     .back-button:hover {
-      background-color: #2980b9;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px var(--shadow);
     }
-
+    /* Mobile Cards */
     @media (max-width: 768px) {
-      th, td {
-        font-size: 0.9rem;
-        padding: 0.6rem;
+      header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.5rem;
       }
-
-      #searchInput {
-        font-size: 0.95rem;
+      .logo-area span { font-size: 1.1rem; }
+      .controls {
+        flex-direction: column;
+        align-items: stretch;
       }
+      #searchInput { width: 100%; }
+      .export-button { width: 100%; justify-content: center; }
+      .card-container { display: block; } /* Tampilkan kartu */
+      .card {
+        background: var(--bg-darker);
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border-radius: var(--border-radius);
+        box-shadow: 0 4px 10px var(--shadow);
+        border-left: 3px solid var(--primary);
+      }
+      .card.total-card {
+        border-left-color: var(--secondary);
+        background: rgba(46, 204, 113, 0.1);
+      }
+      .card h3 { color: var(--primary); margin: 0 0 0.5rem 0; font-size: 1.1rem; }
+      .card.total-card h3 { color: var(--secondary); }
+      .card p { margin: 0.3rem 0; font-size: 0.95rem; }
+      .card .nominal { font-weight: bold; color: var(--secondary); }
+    }
+    .card-container { display: none; } /* Sembunyikan di desktop */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      border-top: 1px solid #34495e;
+      margin-top: 2rem;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo-area">
-      <img src="logogsb.png" alt="Logo Komunitas" onerror="this.src='default-logo.png'">
-      <span>STT GARSAK SADIMARA BERSATU</span>
-    </div>
-  </header>
+  <div class="container">
+    <header>
+      <div class="logo-area">
+        <img src="logogsb.png" alt="Logo STT GSB" onerror="this.src='https://placehold.co/50x50?text=LOGO'">
+        <span>STT GARSAK SADIMARA BERSATU</span>
+      </div>
+    </header>
 
-  <main>
-    <p class="info">Cageran 3/5/2025</p>
-    <p>Bagi Anggota sane Nyagerin Jinah Cash STT, Wajib Membayar wantah Melunasi Cageran Beserta Panak Pipis Yang Tertera Di Tabel Bawah</p>
-    <p>Pada Sangkep 6 Bulan Yang Akan Datang (Ring Penampahan Kuningan)</p>
+    <main>
+      <div class="info-section">
+        <p><strong>Cageran 29/11/2025</strong></p>
+        <p>Bagi Anggota sane Nyagerin Jinah Cash STT, Wajib Membayar wantah Melunasi Cageran Beserta Panak Pipis Yang Tertera Di Tabel Bawah</p>
+        <p>Pada Sangkep 6 Bulan Yang Akan Datang (Ring Rahine Kuningan)</p>
+      </div>
 
-  <h2>Rekap Cageran Anggota</h2>
-  <input type="text" id="searchInput" placeholder="Cari nama anggota...">
+      <div class="controls">
+        <input type="text" id="searchInput" placeholder="Cari nama anggota...">
+        <button class="export-button" onclick="exportTableToExcel()">
+          <i class="fas fa-file-excel"></i> Ekspor ke Excel
+        </button>
+      </div>
 
+      <div class="bukti-cageran">
+        <img src="foto cageran.jpg" alt="Bukti Cageran" onerror="this.src='https://placehold.co/800x300?text=Bukti+Cageran'">
+      </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>No</th>
-        <th>Nama</th>
-        <th>Nominal</th>
-        <th>Total</th>
-      </tr>
-    </thead>
-    <tbody id="dataTable">
-      <tr><td>1</td><td>Sentana Yasa</td><td>Rp400.000</td><td>Rp480.000</td></tr>
-      <tr><td>2</td><td>Putu Ekantara</td><td>Rp5.000.000</td><td>Rp6.000.000</td></tr>
-      <tr><td>3</td><td>Ketut Suardika</td><td>Rp200.000</td><td>Rp240.000</td></tr>
-      <tr><td>4</td><td>Merta Sudana</td><td>Rp200.000</td><td>Rp240.000</td></tr>
-      <tr><td>5</td><td>Komang Ples</td><td>Rp400.000</td><td>Rp480.000</td></tr>
-      <tr><td>6</td><td>Ketut Adi Suardana</td><td>Rp400.000</td><td>Rp480.000</td></tr>
-      <tr><td>7</td><td>Kadek Artana</td><td>Rp200.000</td><td>Rp240.000</td></tr>
-      <tr><td>8</td><td>Gede Kancil</td><td>Rp200.000</td><td>Rp240.000</td></tr>
-      <tr><td>9</td><td>De Bungkil</td><td>Rp200.000</td><td>Rp240.000</td></tr>
-      <tr><td>10</td><td>Wayan Sumerta</td><td>Rp200.000</td><td>Rp240.000</td></tr>
-      <tr><td>11</td><td>Ketut Bagia</td><td>Rp200.000</td><td>Rp240.000</td></tr>
-      <tr><td>12</td><td>Ketut Cetrung</td><td>Rp1.000.000</td><td>Rp1.200.000</td></tr>
-      <tr><td>13</td><td>Putu Kariasa</td><td>Rp200.000</td><td>Rp240.000</td></tr>
-      <tr><td>14</td><td>Putu Adi</td><td>Rp200.000</td><td>Rp240.000</td></tr>
-      <tr><td>15</td><td>Kadek Logi</td><td>Rp200.000</td><td>Rp240.000</td></tr>
-      <tr><td>16</td><td>Kadek Sriasih</td><td>Rp200.000</td><td>Rp240.000</td></tr>
-      <tr><td>17</td><td>Gede Parsa</td><td>Rp200.000</td><td>Rp240.000</td></tr>
-      <tr><td>18</td><td>Budeng</td><td>Rp400.000</td><td>Rp480.000</td></tr>
-      <tr><td>19</td><td>Tomblos</td><td>Rp200.000</td><td>Rp240.000</td></tr>
-      <tr><td>20</td><td>Sumerta Lolot</td><td>Rp200.000</td><td>Rp240.000</td></tr>
-      <tr><td>21</td><td>Putu Ama</td><td>Rp300.000</td><td>Rp360.000</td></tr>
-      <tr><td>22</td><td><strong>Total</strong></td><td>Rp10.700.000</td><td><strong>Rp12.840.000</strong></td></tr>
-    </tbody>
-  </table>
+      <!-- Desktop Table -->
+      <div class="table-container">
+        <table id="dataTable">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+              <th>Nominal</th>
+              <th>Total + Bunga</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Data akan diisi oleh JS -->
+          </tbody>
+        </table>
+      </div>
 
-  <a href="index.html" class="back-button">← Kembali</a>
+      <!-- Mobile Cards -->
+      <div class="card-container" id="cardContainer">
+        <!-- Kartu akan diisi oleh JS -->
+      </div>
+
+      <a href="index.html" class="back-button">
+        <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
+      </a>
+    </main>
+
+    <footer>
+      &copy; 2025 STT GSB - Rekap Cageran
+    </footer>
+  </div>
 
   <script>
-    const searchInput = document.getElementById("searchInput");
-    searchInput.addEventListener("keyup", function () {
-      const filter = this.value.toLowerCase();
-      const rows = document.querySelectorAll("#dataTable tr");
-      rows.forEach(row => {
-        const name = row.cells[1]?.textContent.toLowerCase() || "";
-        row.style.display = name.includes(filter) ? "" : "none";
+    // Data cageran
+    const data = [
+      { no: 1, nama: 'Sentana Yasa', nominal: 'Rp400.000', total: 'Rp480.000' },
+      { no: 2, nama: 'Komang Flash', nominal: 'Rp200.000', total: 'Rp240.000' },
+      { no: 3, nama: 'Ketut Suardika', nominal: 'Rp200.000', total: 'Rp240.000' },
+      { no: 4, nama: 'Ketut Adi Suardana', nominal: 'Rp300.000', total: 'Rp360.000' },
+      { no: 5, nama: 'Gede Kancil', nominal: 'Rp200.000', total: 'Rp240.000' },
+      { no: 6, nama: 'Putu Yogantara', nominal: 'Rp200.000', total: 'Rp240.000' },
+      { no: 7, nama: 'Ketut Bagia', nominal: 'Rp200.000', total: 'Rp240.000' },
+      { no: 8, nama: 'Kadek Logi', nominal: 'Rp200.000', total: 'Rp240.000' },
+      { no: 9, nama: 'Kadek Budeng', nominal: 'Rp400.000', total: 'Rp480.000' },
+      { no: 10, nama: 'Lolot Band', nominal: 'Rp200.000', total: 'Rp240.000' },
+      { no: 11, nama: 'Putu Dedik', nominal: 'Rp200.000', total: 'Rp240.000' },
+      { no: 12, nama: 'Toprak', nominal: 'Rp200.000', total: 'Rp240.000' },
+      { no: 13, nama: 'Putu Kariase', nominal: 'Rp200.000', total: 'Rp240.000' },
+      { no: 14, nama: 'Ketut Cetrung', nominal: 'Rp1.500.000', total: 'Rp1.700.000' },
+      { no: 15, nama: 'Kadek Agus Suantara', nominal: 'Rp300.000', total: 'Rp360.000' },
+      { no: 16, nama: 'Gede Bungkil', nominal: 'Rp200.000', total: 'Rp240.000' },
+      { no: 22, nama: 'TOTAL', nominal: 'Rp5.000.000', total: 'Rp6.020.000', isTotal: true }
+    ];
+
+    // Fungsi untuk menampilkan data (tabel dan kartu)
+    function displayData(items) {
+      const tableBody = document.getElementById('tableBody');
+      const cardContainer = document.getElementById('cardContainer');
+      tableBody.innerHTML = '';
+      cardContainer.innerHTML = '';
+
+      items.forEach(item => {
+        // Tabel Desktop
+        const row = document.createElement('tr');
+        if (item.isTotal) {
+          row.classList.add('total-row');
+        }
+        row.innerHTML = `
+          <td>${item.no}</td>
+          <td>${item.nama}</td>
+          <td>${item.nominal}</td>
+          <td>${item.total}</td>
+        `;
+        tableBody.appendChild(row);
+
+        // Kartu Mobile
+        const card = document.createElement('div');
+        if (item.isTotal) {
+          card.classList.add('card', 'total-card');
+        } else {
+          card.classList.add('card');
+        }
+        card.innerHTML = `
+          <h3>${item.nama}</h3>
+          <p><strong>No:</strong> ${item.no}</p>
+          <p><strong>Nominal:</strong> <span class="nominal">${item.nominal}</span></p>
+          <p><strong>Total + Bunga:</strong> <span class="nominal">${item.total}</span></p>
+        `;
+        cardContainer.appendChild(card);
       });
+    }
+
+    // Fungsi pencarian
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      const filtered = data.filter(item => 
+        item.nama.toLowerCase().includes(query)
+      );
+      displayData(filtered);
     });
+
+    // Fungsi ekspor ke Excel
     function exportTableToExcel() {
-      const table = document.getElementById("dataTableWrapper");
-      const tableHTML = table.outerHTML.replace(/ /g, '%20');
-
-      const filename = 'rekap-cageran.xls';
-      const dataType = 'application/vnd.ms-excel';
-
+      let csv = 'No,Nama,Nominal,Total + Bunga\n';
+      data.forEach(item => {
+        if (!item.isTotal) { // Jangan sertakan baris total dalam ekspor
+          csv += `"${item.no}","${item.nama}","${item.nominal}","${item.total}"\n`;
+        }
+      });
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const link = document.createElement('a');
-      link.href = 'data:' + dataType + ', ' + tableHTML;
-      link.download = filename;
+      const url = URL.createObjectURL(blob);
+      link.href = url;
+      link.download = 'rekap_cageran.csv';
       link.click();
     }
+
+    // Inisialisasi tampilan
+    displayData(data);
   </script>
 </body>
 </html>
-
-
 
