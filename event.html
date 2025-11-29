@@ -3,189 +3,197 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Awig Awig Lan Event</title>
+  <title>Awig-Awig Lan Event</title>
   <style>
+    :root {
+      --primary: #3498db;
+      --bg-dark: #1e272e;
+      --bg-darker: #121212;
+      --text-light: #f1f1f1;
+      --text-muted: #bdc3c7;
+      --shadow: rgba(0, 0, 0, 0.3);
+      --border-radius: 8px;
+      --transition: all 0.3s ease;
+    }
     body {
-      background-color: #1e272e;
-      color: #f1f1f1;
+      background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
+      color: var(--text-light);
       font-family: 'Poppins', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
+      justify-content: flex-start; /* Ganti ke flex-start agar konten tidak tengah */
+      min-height: 100vh;
       margin: 0;
       text-align: center;
-      padding: 1rem;
+      padding: 1.5rem;
     }
 
     .logo {
       max-width: 100%;
       height: auto;
       max-height: 150px;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 10px var(--shadow);
     }
 
     h1 {
       margin: 0.5rem 0;
+      color: var(--primary);
     }
 
-    #countdown {
-      font-size: 2rem;
-      background-color: #2f3640;
-      padding: 1rem 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      margin: 1.5rem 0;
+    .content-box {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 10px var(--shadow);
+      width: 100%;
+      max-width: 800px;
+      margin-bottom: 1.5rem;
+    }
+
+    .awig-section {
+      margin-bottom: 2rem;
+    }
+
+    .awig-section p {
+      margin: 0.5rem 0;
+      line-height: 1.6;
+    }
+
+    .table-container {
+      overflow-x: auto; /* Agar tabel bisa digeser di HP jika terlalu lebar */
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 0.8rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid #34495e;
+    }
+
+    th {
+      background: linear-gradient(135deg, var(--bg-dark) 0%, #2c3e50 100%);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.03);
+    }
+
+    tr:hover {
+      background-color: rgba(255, 255, 255, 0.07);
     }
 
     .back-button {
-      background-color: #3498db;
+      background-color: var(--primary);
       color: white;
-      padding: 0.6rem 1.2rem;
+      padding: 0.8rem 1.5rem;
       border: none;
-      border-radius: 8px;
+      border-radius: var(--border-radius);
       font-size: 1rem;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: var(--transition);
       text-decoration: none;
+      display: inline-block;
+      font-weight: 500;
     }
 
     .back-button:hover {
       background-color: #2980b9;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px var(--shadow);
     }
 
     @media (max-width: 600px) {
-      #countdown {
-        font-size: 1.5rem;
+      .logo {
+        max-height: 100px;
+      }
+
+      .content-box {
         padding: 1rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .awig-section p {
+        font-size: 0.9rem;
+      }
+
+      th, td {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.85rem;
       }
 
       .back-button {
         font-size: 0.9rem;
-        padding: 0.5rem 1rem;
-      }
-
-      .logo {
-        max-height: 100px;
+        padding: 0.6rem 1rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <img src="logogsb.png" alt="Logo STT" class="logo" onerror="this.src='default-logo.png'" />
+  <img src="logogsb.png" alt="Logo STT" class="logo" onerror="this.src='https://placehold.co/150x150?text=LOGO'">
 
-  <div>
-    <p><strong>Awig-Awig STT GSB</strong> ditetapkan pada tanggal <strong>3 Mei 2025</strong>.</p>
-    <p><b>Perawatan Alat-Alat Fasilitas GSB</b>b</p>
-    <p>1. Bagi Siapa Yang Menggunakan Alat - alat GSB bagi anggota GSB Di kenai Biaya Perawatan Sebesar Rp. 100.000 / Seikhlasnya</p>
-    <p>2. Bagi Siapa Saja Yang Memakai Fasilitas Alat -alat GSB, Bila Mana Ada Kerusakan Di Alat Tersebut, Dikenai Biaya Penanggung Jawaban Kerusakan Dan Sewa Alat</p>
-    <p>3. Bagi Anggota Yang Tidak Menghadiri, Acara Penampahan Babi Akan di Kenakan Jalukan Sebesar Rp. 25.000 </p>
+  <div class="content-box">
+    <h1>Awig-Awig Lan Event</h1>
+
+    <div class="awig-section">
+      <p><strong>Awig-Awig STT GSB</strong> ditetapkan pada tanggal <strong>3 Mei 2025</strong>.</p>
+      <p><b>Perawatan Alat-Alat Fasilitas GSB</b></p>
+      <ol style="text-align: left; max-width: 600px; margin: 0 auto;">
+        <li>Bagi Siapa Yang Menggunakan Alat - alat GSB bagi anggota GSB Di kenai Biaya Perawatan Sebesar Rp. 100.000 / Seikhlasnya</li>
+        <li>Bagi Siapa Saja Yang Memakai Fasilitas Alat -alat GSB, Bila Mana Ada Kerusakan Di Alat Tersebut, Dikenai Biaya Penanggung Jawaban Kerusakan Dan Sewa Alat</li>
+        <li>Bagi Anggota Yang Tidak Menghadiri, Pesangkepan Akan di Kenakan Jalukan Sebesar Rp. 25.000</li>
+      </ol>
+    </div>
+
+    <div>
+      <strong>Daftar Anggota Yang Nyaluk Pesangkepan</strong>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>I Ketut Suardika</td></tr>
+            <tr><td>2</td><td>I Kadek Artana</td></tr>
+            <tr><td>3</td><td>I Nengah Hendra Prayoga</td></tr>
+            <tr><td>4</td><td>I Nengah Suriandana</td></tr>
+            <tr><td>5</td><td>Ni Kadek Sriasih</td></tr>
+            <tr><td>6</td><td>Kadek Putri</td></tr>
+            <tr><td>7</td><td>I Putu Adi Suartama</td></tr>
+            <tr><td>8</td><td>I Kadek Sumardiasa</td></tr>
+            <tr><td>9</td><td>I Kadek Yogix</td></tr>
+            <tr><td>10</td><td>I Komang Suryadana</td></tr>
+            <tr><td>11</td><td>Wayan Putri</td></tr>
+            <tr><td>12</td><td>I Putu Ama</td></tr>
+            <tr><td>13</td><td>I Nengah Januariasa</td></tr>
+            <tr><td>14</td><td>Wahyu Gunadi</td></tr>
+        
+            <tr><td>15</td><td>...closed</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-
-<div><strong>Daftar Anggota Yang Nyaluk , (Penampahan Babi)</strong>
-    <table>
-        <thead>
-        <tr>
-            <th>No</th>
-            <th>Nama</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>I Komang Merta Sudana</td>
-            </tr>  
-    
-            <tr>
-                <td>3</td>
-                <td>I Kadek Artana</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>I Nengah Hendra Prayoga</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Ni Ketut Cahyani</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>I Nengah Suriandana</td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>Ni Kadek Sriasih</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td> I Wayan Balik</td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>I Gede Putu Suartama</td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td> I Ketut Bagia</td>
-            </tr>
-            <tr>
-                <td>11</td>
-                <td>I Ketut Darma</td>
-            </tr>
-            <tr>
-                <td>12</td>
-                <td> I Putu Adi Suartama</td>
-            </tr>
-            <tr>
-                <td>13</td>
-                <td>I Kadek Sumardiasa </td>
-            </tr>
-            <tr>
-                <td>14</td>
-                <td>I Kadek Yogik</td>
-            </tr>
-            <tr>
-                <td>15</td>
-                <td>I Kadek Surya</td>
-            </tr>
-            <tr>
-                <td>16</td>
-                <td>Kadek Riandana</td>
-            </tr>
-            <tr>
-                <td>17</td>
-                <td>I Komang Suryadana</td>
-            </tr>
-            <tr>
-                <td>18</td>
-                <td>I Wayan Putri Susilawati</td>
-            </tr>
-            <tr>
-                <td>19</td>
-                <td>I Putu Ama</td>
-            </tr>
-            <tr>
-                <td>20</td>
-                <td>Nengah Januariasa</td>
-            </tr>
-            <tr>
-                <td>21</td>
-                <td>I Kadek Wahyu Gunadi</td>
-            </tr>
-            <tr>
-                <td>22</td>
-                <td>Ni Ketut Sri Agustini</td>
-            </tr>
-            <tr>
-                <td>23</td>
-                <td>......on going </td>
-            </tr>
-        </tbody>
-    </table>
-
-</div>
 
   <a href="index.html" class="back-button">← Kembali ke Dashboard</a>
 
