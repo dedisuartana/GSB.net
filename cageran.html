@@ -232,7 +232,7 @@
       </div>
 
       <div class="bukti-cageran">
-        <img src="foto cageran.jpg" alt="Bukti Cageran" onerror="this.src='https://placehold.co/800x300?text=Bukti+Cageran'">
+        <img src="foto cageran.jpeg" alt="Bukti Cageran" onerror="this.src='https://placehold.co/800x300?text=Bukti+Cageran'">
       </div>
 
       <!-- Desktop Table -->
@@ -263,31 +263,49 @@
     </main>
 
     <footer>
-      &copy; 2025 STT GSB - Rekap Cageran
+      &copy; 2026 STT GSB - Rekap Cageran
     </footer>
   </div>
 
   <script>
     // Data cageran
     const data = [
-      { no: 1, nama: 'Ketut Suparsa', nominal: 'Rp200.000', total: 'Rp240.000' },
-      { no: 2, nama: 'Putu Sentana', nominal: 'Rp400.000', total: 'Rp480.000' },
-      { no: 3, nama: 'Putu Ekantara', nominal: 'Rp600.000', total: 'Rp720.000' },
-      { no: 4, nama: 'Ketut Adi Suardana', nominal: 'Rp300.000', total: 'Rp360.000' },
-      { no: 5, nama: 'Gede Kancil', nominal: 'Rp200.000', total: 'Rp240.000' },
-      { no: 6, nama: 'Putu Yogantara', nominal: 'Rp200.000', total: 'Rp240.000' },
-      { no: 7, nama: 'Ketut Bagia', nominal: 'Rp200.000', total: 'Rp240.000' },
-      { no: 8, nama: 'Kadek Logi', nominal: 'Rp200.000', total: 'Rp240.000' },
-      { no: 9, nama: 'Kadek Budeng', nominal: 'Rp400.000', total: 'Rp480.000' },
-      { no: 10, nama: 'Lolot Band', nominal: 'Rp200.000', total: 'Rp240.000' },
-      { no: 11, nama: 'Putu Dedik', nominal: 'Rp200.000', total: 'Rp240.000' },
-      { no: 12, nama: 'Toprak', nominal: 'Rp200.000', total: 'Rp240.000' },
-      { no: 13, nama: 'Putu Kariase', nominal: 'Rp200.000', total: 'Rp240.000' },
-      { no: 14, nama: 'Ketut Cetrung', nominal: 'Rp1.500.000', total: 'Rp1.800.000' },
-      { no: 15, nama: 'Kadek Agus Suantara', nominal: 'Rp300.000', total: 'Rp360.000' },
-      { no: 16, nama: 'Gede Bungkil', nominal: 'Rp200.000', total: 'Rp240.000' },
-      { no: 22, nama: 'TOTAL', nominal: 'Rp5.000.000', total: 'Rp6.120.000', isTotal: true }
-    ];
+  { no: 1, nama: 'Ketut Suparsa', nominal: 'Rp200.000', total: 'Rp240.000' },
+  { no: 2, nama: 'Putu Sentana', nominal: 'Rp400.000', total: 'Rp480.000' },
+  { no: 3, nama: 'Putu Ekantara', nominal: 'Rp600.000', total: 'Rp720.000' },
+  { no: 4, nama: 'Ketut Adi Suardana', nominal: 'Rp300.000', total: 'Rp360.000' },
+  { no: 5, nama: 'Gede Kancil', nominal: 'Rp300.000', total: 'Rp360.000' },
+  { no: 6, nama: 'Putu Yogantara', nominal: 'Rp300.000', total: 'Rp360.000' },
+  { no: 7, nama: 'Kadek Artana', nominal: 'Rp200.000', total: 'Rp240.000' },
+  { no: 8, nama: 'Kadek Logi', nominal: 'Rp300.000', total: 'Rp360.000' },
+  { no: 9, nama: 'Kadek Budeng', nominal: 'Rp400.000', total: 'Rp480.000' },
+  { no: 10, nama: 'Putu Sumerta', nominal: 'Rp200.000', total: 'Rp240.000' },
+  { no: 11, nama: 'Putu Dedik', nominal: 'Rp400.000', total: 'Rp480.000' },
+  { no: 12, nama: 'Toprak', nominal: 'Rp200.000', total: 'Rp240.000' },
+  { no: 13, nama: 'Kadek Putri', nominal: 'Rp200.000', total: 'Rp240.000' },
+  { no: 14, nama: 'Ketut Cetrung', nominal: 'Rp600.000', total: 'Rp720.000' },
+  { no: 15, nama: 'Tomblos', nominal: 'Rp400.000', total: 'Rp480.000' },
+  { no: 16, nama: 'Gede Bungkil', nominal: 'Rp400.000', total: 'Rp480.000' }
+  // Catatan: Baris ke-17 (TOTAL manual) sudah saya hapus agar kita bisa menghitung dinamis
+];
+
+let grandTotalNominal = 0;
+let grandTotalKeseluruhan = 0;
+
+data.forEach(item => {
+  // Menghapus tulisan "Rp" dan titik, lalu mengubahnya menjadi tipe Number (angka)
+  const nominalAngka = parseInt(item.nominal.replace(/[^0-9]/g, ''), 10);
+  const totalAngka = parseInt(item.total.replace(/[^0-9]/g, ''), 10);
+
+  grandTotalNominal += nominalAngka;
+  grandTotalKeseluruhan += totalAngka;
+});
+
+// Format kembali ke bentuk Rupiah (contoh: Rp5.400.000)
+const formatRupiah = (angka) => `Rp${angka.toLocaleString('id-ID')}`;
+
+console.log('Grand Total Nominal:', formatRupiah(grandTotalNominal));
+console.log('Grand Total Keseluruhan:', formatRupiah(grandTotalKeseluruhan));
 
     // Fungsi untuk menampilkan data (tabel dan kartu)
     function displayData(items) {
